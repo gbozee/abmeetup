@@ -1,0 +1,48 @@
+{% extends "login.html" %}
+{% load t1tags %}
+{% block page_header %}
+Signup Page
+{% endblock page_header %}
+
+{% block content %}
+{{ block.super }}
+<form method="post" action="{% url "signup" %}">
+    {% csrf_token %}
+        <div class="form-group">
+            <label>{{form.username.label}} </label>
+            {{form.username|add_attributes:"class:form-control,placeholder:Username"}}
+            {% if form.username.errors %}
+            <span class="help-text">{{form.username.errrors}}</span>
+            {% endif %}
+        </div>
+        <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+            <label>{{form.email.label}}</label>
+            {{form.email|add_attributes:"class:form-control"}}
+            {% if form.email.errors %}
+            <span class="help-text">{{form.email.errors}}</span>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>{{form.phone_number.label}}</label>
+            {{form.phone_number|add_attributes:"class:form-control"}}
+            {% if form.phone_number.errors %}
+            <span class="help-text">{{form.phone_number.errrors}}</span>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>{{form.password.label}}</label>
+            {{form.password|add_attributes:"class:form-control"}}
+            {% if form.password.errors %}
+            <span class="help-text">{{form.password.errrors}}</span>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>{{form.confirm_password.label}}</label>
+            {{form.confirm_password|add_attributes:"class:form-control"}}
+            {% if form.confirm_password.errors %}
+            <span class="help-text">{{form.confirm_password.errrors}}</span>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+{% endblock content %}
